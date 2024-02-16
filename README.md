@@ -35,6 +35,18 @@ The CI/CD pipeline should be able to validate the protocol and deploy the servic
 
 Using `giget` and remote repository to store templates. We can provide a better experience for starting a new project.
 
+The experience will be similar to `create astro@latest` and `create-turbo@latest`. Both of them will ask simple questions to construct the starter project for you.
+
+```
+1. What is the name of the project?
+
+- We use -t parameters to indicate which template user want to use
+```
+
 ### Type safety
 
 Each Instill AI's recipe construct a pipeline, the pipeline will have input and output and can be called by Instill AI's API. This tool will auto-generate the type definition of this pipeline. So the developer can use the type definition to write the application code.
+
+```
+inst --gen-type -r /path/to/recipe -o /path/to/output
+```

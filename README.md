@@ -1,4 +1,4 @@
-# Protocol-based Developer Experience
+# Good developer experience
 
 This is a playground to showcase what is the good developer experience in my mind. In this playground, we will use instill-ai's pipeline recipe and API as an example to construct a good developer experience.
 

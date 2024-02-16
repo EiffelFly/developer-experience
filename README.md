@@ -2,6 +2,70 @@
 
 This is a playground to showcase what is the good developer experience in my mind. In this playground, we will use instill-ai's pipeline recipe and API as an example to construct a good developer experience.
 
+```
+// Instill AI's recipe
+
+{
+  "version": "v1beta",
+  "components": [
+    {
+      "id": "start",
+      "resource_name": "",
+      "configuration": {
+        "metadata": {
+          "input": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "instillFormat": "array:string",
+            "title": "input"
+          }
+        }
+      },
+      "definition_name": "operator-definitions/start"
+    },
+    {
+      "id": "end",
+      "resource_name": "",
+      "configuration": {
+        "input": {
+          "result": "${stability_0.output.images}"
+        },
+        "metadata": {
+          "result": {
+            "title": "result"
+          }
+        }
+      },
+      "definition_name": "operator-definitions/end"
+    },
+    {
+      "id": "stability_0",
+      "resource_name": "users/pochun/connectors/st-dev",
+      "configuration": {
+        "task": "TASK_TEXT_TO_IMAGE",
+        "input": {
+          "cfg_scale": 7,
+          "clip_guidance_preset": "FAST_BLUE",
+          "engine": "stable-diffusion-xl-1024-v1-0",
+          "height": 512,
+          "prompts": "${start.input}",
+          "sampler": "K_DPM_2_ANCESTRAL",
+          "samples": 1,
+          "steps": 30,
+          "width": 512
+        }
+      },
+      "definition_name": "connector-definitions/stability-ai"
+    }
+  ]
+}
+
+
+
+```
+
 ## Principles
 
 - **Fast feedback loop**: The faster the feedback loop, the more productive the developer is.
@@ -29,7 +93,7 @@ With the help of VSCode intelligence, we can properly hint users how to write a 
 
 ### CI/CD
 
-The CI/CD pipeline should be able to validate the protocol and deploy the services to production. The production environment should be able to have different branches. Take Vercel for example, they separate environments into "Production", "Preview" and "Development", each environment can have its environment variables. So I can use different set of 3rd party services for different environments.
+The CI/CD pipeline should be able to validate the protocol and deploy the services to production. The production environment should be able to have different branches. Take Vercel for example, they separate environments into "Production", "Preview" and "Development", each environment can have its environment variables. So I can use different sets of 3rd party services for different environments.
 
 ### Good starter
 
@@ -45,7 +109,7 @@ The experience will be similar to `create astro@latest` and `create-turbo@latest
 
 ### Type safety
 
-Each Instill AI's recipe construct a pipeline, the pipeline will have input and output and can be called by Instill AI's API. This tool will auto-generate the type definition of this pipeline. So the developer can use the type definition to write the application code.
+Each Instill AI's recipe constructs a pipeline, the pipeline will have input and output and can be called by Instill AI's API. This tool will auto-generate the type definition of this pipeline. So the developer can use the type definition to write the application code.
 
 ```
 inst --gen-type -r /path/to/recipe -o /path/to/output

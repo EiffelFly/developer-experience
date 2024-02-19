@@ -87,7 +87,7 @@ This function will generate an "instill-ai" folder with the configuration file a
 
 ```json
 {
-  "id": "pipeline-id",
+  "name": "entity-id/pipeline-id",
   "recipe": "path/to/recipe"
 
   // This will affect how you manage the recipe, a singular recipe mean the pipeline recipe is only maintained in one json file. A plural recipe will allow you to use $ref to reference different recipe.

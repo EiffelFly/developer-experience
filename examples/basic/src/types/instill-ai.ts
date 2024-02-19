@@ -1,18 +1,21 @@
 import * as z from "zod";
 
-export const JumbotronLifelikeSpeechInputSchema = z.object({
+export const jumbotronLifelikeSpeechPipelineName =
+  "instill-womba/jumbotron-lifelike-speech";
+
+export const JumbotronLifelikeSpeechPipelineInputSchema = z.object({
   prompt: z.string(),
 });
 
-export type JumbotronLifelikeSpeechInput = z.infer<
-  typeof JumbotronLifelikeSpeechInputSchema
+export type JumbotronLifelikeSpeechPipelineInput = z.infer<
+  typeof JumbotronLifelikeSpeechPipelineInputSchema
 >;
 
-export const JumbotronLifelikeSpeechOutputSchema = z.object({
+export const JumbotronLifelikeSpeechPipelineOutputSchema = z.object({
   audio: z.string().optional(),
   transcript: z.string().optional(),
 });
 
-export type JumbotronLifelikeSpeechOutput = z.infer<
-  typeof JumbotronLifelikeSpeechOutputSchema
+export type JumbotronLifelikeSpeechPipelineOutput = z.infer<
+  typeof JumbotronLifelikeSpeechPipelineOutputSchema
 >;

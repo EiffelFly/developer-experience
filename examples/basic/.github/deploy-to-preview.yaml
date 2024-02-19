@@ -1,0 +1,28 @@
+name: Deploy to Preview
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy-to-d0:
+    if: ${{ !contains(github.ref, 'release') }}
+    name: Deploy to d0
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - uses: pnpm/action-setup@v2.0.1
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 8
+          run_install: false
+
+      - name: Install Instill AI CLI
+        run: npm install --global instill-ai@latest
+
+      - name: Deploy to Instill AI Preview
+        run: inst deploy --env preview --token ${{ secrets.INSTALL_AI_TOKEN }}

@@ -1,0 +1,6 @@
+{
+  "name": "instill-womba/jumbotron-lifelike-speech",
+  "recipe": [
+    "./recipe.json"
+  ]
+}
